@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!-- Configuration du Mod pour The Long Drive Multiplayer -->
+  
+  <!-- Paramètres de Synchronisation Audio -->
+  <audioSync>
+    <!-- Intervalle de synchronisation en millisecondes -->
+    <syncInterval>2000</syncInterval>
+    
+    <!-- Décalage acceptable entre les joueurs en millisecondes -->
+    <acceptableDrift>500</acceptableDrift>
+    
+    <!-- Activer la synchronisation audio -->
+    <enabled>true</enabled>
+  </audioSync>
+  
+  <!-- Paramètres de Streaming Audio -->
+  <audioStreaming>
+    <!-- Taille de chaque chunk en octets (256 KB) -->
+    <chunkSize>262144</chunkSize>
+    
+    <!-- Délai entre les chunks en millisecondes -->
+    <chunkDelay>100</chunkDelay>
+    
+    <!-- Timeout pour les streams en secondes -->
+    <streamTimeout>300</streamTimeout>
+    
+    <!-- Activer le streaming audio direct -->
+    <enabled>true</enabled>
+  </audioStreaming>
+  
+  <!-- Paramètres de Réseau -->
+  <network>
+    <!-- Nombre de tentatives pour les transferts -->
+    <maxRetries>3</maxRetries>
+    
+    <!-- Timeout pour chaque tentative en secondes -->
+    <sendTimeout>30</sendTimeout>
+    
+    <!-- Taille max du buffer P2P en octets -->
+    <maxBufferSize>524288</maxBufferSize>
+  </network>
+  
+  <!-- Paramètres de Cache -->
+  <cache>
+    <!-- Répertoire de cache pour les fichiers audio -->
+    <cacheDir>CustomRadio</cacheDir>
+    
+    <!-- Taille max du cache en MB -->
+    <maxCacheSize>2048</maxCacheSize>
+    
+    <!-- Nettoyer automatiquement le cache -->
+    <autoCleanup>true</autoCleanup>
+  </cache>
+  
+  <!-- Paramètres de Logging -->
+  <logging>
+    <!-- Niveau de verbosité: 0=Error, 1=Warning, 2=Info, 3=Debug -->
+    <verbosity>2</verbosity>
+    
+    <!-- Enregistrer les messages AudioSync -->
+    <logAudioSync>true</logAudioSync>
+    
+    <!-- Enregistrer les messages de Streaming -->
+    <logStreaming>true</logStreaming>
+  </logging>
+  
+  <!-- Paramètres de Compatibilité -->
+  <compatibility>
+    <!-- Version minimale de The Long Drive -->
+    <minGameVersion>2024.1.0</minGameVersion>
+    
+    <!-- Version minimale de MelonLoader -->
+    <minMelonLoaderVersion>0.5.4</minMelonLoaderVersion>
+    
+    <!-- Build IDs de jeu supportés -->
+    <supportedGameBuildIds>
+      <buildId>10117180</buildId>
+      <buildId>16536989</buildId>
+    </supportedGameBuildIds>
+    
+    <!-- Formats audio supportés -->
+    <supportedFormats>
+      <format>mp3</format>
+      <format>wav</format>
+      <format>ogg</format>
+    </supportedFormats>
+  </compatibility>
+  
+  <!-- Paramètres de Multijoueur -->
+  <multiplayer>
+    <!-- Attendre la synchro avant de charger une chanson -->
+    <waitForSync>true</waitForSync>
+    
+    <!-- Délai avant de charger une chanson en millisecondes -->
+    <loadDelay>1000</loadDelay>
+    
+    <!-- Activer les notifications de changement de chanson -->
+    <showNotifications>true</showNotifications>
+  </multiplayer>
+</configuration>

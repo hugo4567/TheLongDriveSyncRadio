@@ -1,0 +1,47 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release x64
+        run: msbuild TheLongDriveSyncRadio.sln /m /p:Configuration=Release /p:Platform=x64 /p:RestorePackages=false
+
+      - name: Prepare release package
+        shell: pwsh
+        run: |
+          $packagePath = "release/TheLongDriveSyncRadio"
+          New-Item -ItemType Directory -Force -Path $packagePath | Out-Null
+          Copy-Item "bin/x64/Release/TheLongDriveSyncRadio.dll" $packagePath
+          Copy-Item "AudioSyncConfig.xml" $packagePath
+          Compress-Archive -Path "$packagePath/*" -DestinationPath "release/TheLongDriveSyncRadio.zip" -Force
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TheLongDriveSyncRadio
+          path: release/TheLongDriveSyncRadio.zip
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/TheLongDriveSyncRadio.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
